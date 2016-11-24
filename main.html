@@ -1,0 +1,214 @@
+<!-- myfile.html -->
+<html>
+<head>
+
+<!-- first select options -->
+<script language="JavaScript" type="text/javascript">
+
+/*
+ * Clear dropdown list
+ * @param {String || Object]} selectObj: the name of the dropbox or object, required
+ */
+function removeOptions(selectObj)
+{
+  if (typeof selectObj != 'object')
+  {
+    selectObj = document.getElementById(selectObj);
+  }
+
+  var len = selectObj.options.length;
+ 
+  for (var i=0; i < len; i++)
+  {
+    selectObj.options[0] = null;
+  }
+}
+ 
+/*
+ * @param {String || Object]} selectObj: the name of the dropdown list or object, required
+ * @param {Array} optionList: set text:value  [{txt:'10,20', val:'10'}] required
+ * @param {String} firstOption: 'Please choose', optional
+ * @param {String} selected: default value, optional
+ */
+function setSelectOption(selectObj, optionList, firstOption, selected)
+{
+  if (typeof selectObj != 'object')
+  {
+    selectObj = document.getElementById(selectObj);
+  }
+ 
+  // clear dropdown list
+  removeOptions(selectObj);
+ 
+  var start = 0;
+  
+  if (firstOption)
+  {
+    selectObj.options[0] = new Option(firstOption, '');
+    start ++;
+  }
+ 
+  var len = optionList.length;
+ 
+  for (var i=0; i < len; i++)
+  {
+    //Set option
+    selectObj.options[start] = new Option(optionList[i].txt, optionList[i].val);
+    // selected item
+    if(selected == optionList[i].val)
+    {
+      selectObj.options[start].selected = true;
+    }
+    start ++;
+  }
+}
+</script>
+
+
+<script language="JavaScript" type="text/javascript">
+var numberOf = [];
+numberOf[1] = [{txt:'10--20', val:'10'}];
+numberOf[2] = [{txt:'30--40', val:'30'}];
+numberOf[3] = [{txt:'50--60', val:'50'}];
+numberOf[4] = [{txt:'70--80', val:'70'}];
+ 
+function setNum(phase)
+{ 
+  setSelectOption('number', numberOf[phase], '');
+}
+ 
+</script>
+
+
+<!-- second select options -->
+<script language="JavaScript" for="window" event="onload">
+xmlDom = new ActiveXObject("Microsoft.XMLDOM");
+var i=0;
+var j=0;
+var institution_name="";
+loadXML();
+function loadXML(){
+  xmlDoc.async="false";
+  xmlDoc.load("location.xml");
+  xmlObj=xmlDoc.documentElement; 
+  nodes = xmlDoc.documentElement.childNodes;
+  document.frm.location.options.length = 0; 
+  document.frm.institution.options.length = 0;
+
+  for (i=0;i<xmlObj.childNodes.length;i++){
+    labels=xmlObj.childNodes(i).getAttribute("display_name");
+    values=xmlObj.childNodes(i).text;
+    document.frm.location.add(document.createElement("OPTION"));
+    document.frm.location.options[i].text=labels; 
+    document.frm.location.options[i].value=values; 
+  }
+}
+</script>
+
+<script language="JavaScript" >
+var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+var i=0;
+var j=0;
+
+function setinstitution(main){
+  var is_selected="N";
+  if (document.frm.institution.options.length!=0) { 
+    for (i=0;i<=document.frm.institution.options.length;i++)
+    document.frm.institution.options[i]=null ;
+  }
+
+  if (document.frm.institution.options.length!=0) { 
+    for (i=0;i<=document.frm.institution.options.length;i++){
+    document.frm.institution.options[i]=null ;
+    document.frm.institution.options.remove(i);
+    }
+  }
+
+  for (i=0;i<xmlObj.childNodes.length;i++){
+    var values="";
+    var lables="";
+    if (is_selected=="Y") return;
+    labels=xmlObj.childNodes(i).getAttribute("display_name");
+    values=xmlObj.childNodes(i).text;
+
+    if (labels==main){
+      is_selected="Y";
+      for (j=0;j<xmlObj.childNodes(i).childNodes.length;j++){
+
+      labels=xmlObj.childNodes(i).childNodes(j).getAttribute("display_name");
+      values=xmlObj.childNodes(i).childNodes(j).text;
+
+      document.frm.institution.add(document.createElement("OPTION"));
+      document.frm.institution.options[j].text=labels; 
+      document.frm.institution.options[j].value=values; 
+      }
+    }
+  }
+}
+</script>
+
+
+<!-- Validate Input -->
+<script type="text/javascript">
+
+function validate_required(field,alerttxt)
+{
+with (field)
+  {
+  if (value==null||value=="")
+    {alert(alerttxt);return false}
+  else {return true}
+  }
+}
+
+// function validate_sumFactor()
+// {
+//   var a = parseFloat(document.getElementByName("firstfactor").value),
+//   var b = parseFloat(document.getElementByName("secondfactor").value),
+//   var c = parseFloat(document.getElementByName("thirdfactor").value),
+//   var d = parseFloat(document.getElementByName("fourthfactor").value,
+//   var result = (a+b+c+d);
+
+//   if (result != 100)
+//     {alert("hahha");return false}
+// }
+
+function validate_form(thisform)
+{
+with (thisform)
+  {
+  if (validate_required(phase,"Phase must be filled out!")==false)
+    {phase.focus();return false};
+  // if (validate_sumFactor()==false)
+  //   {firstfactor.focus();return false}
+  }
+}
+</script>
+
+<title>591: Final Project</title>
+</head>
+<body bgcolor="#ABCDEF">
+<form NAME="frm" action="action_page.php" onsubmit="return validate_form(this)" method="post">
+
+<p>Phase<select name="phase" id="phase" onchange="setNum(this.options[this.selectedIndex].value);">
+  <option value="">-Please Choose-</option>
+  <option value="1">phase 1</option>
+  <option value="2">phase 2</option>
+  <option value="3">phase 3</option>
+  <option value="4">phase 4</option>
+</select></p>
+<p>Number of people<select name="number" id="number">
+  <option value=""></option>
+</select> </p>
+<p>Prefered Location<SELECT NAME="location" OnChange='setinstitution(this[selectedIndex].text)'>
+<option selected value="" ></option></SELECT></p>
+<p>Prefered Institution<SELECT NAME="institution"></SELECT></p>
+First Factor:<input type="text" name="firstfactor" value="25"> Second Factor:<input type="text" name="secondfactor" value="25">
+<br>
+Third Factor:<input type="text" name="thirdfactor" value="25"> Fourth Factor:<input type="text" name="fourthfactor" value="25">
+<br><br>
+<input type="submit" value="Submit">
+
+</form>
+</body>
+</html>
