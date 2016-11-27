@@ -1,7 +1,7 @@
 <!-- myfile.html -->
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="style.css" />
 <!-- first select options -->
 <script language="JavaScript" type="text/javascript">
 
@@ -187,28 +187,59 @@ with (thisform)
 
 <title>591: Final Project</title>
 </head>
-<body bgcolor="#ABCDEF">
+<body bgcolor="#7AD17F">
+<ul class="form-style-1">
+<div class="form">
+<legend>Clinical Trial Recommandation</legend>
 <form NAME="frm" action="action_page.php" onsubmit="return validate_form(this)" method="post">
 
-<p>Phase<select name="phase" id="phase" onchange="setNum(this.options[this.selectedIndex].value);">
+
+<li>
+<label>Phase<span class="required">*</span></label>
+<select name="phase" id="phase" class="field-select" onchange="setNum(this.options[this.selectedIndex].value);">
   <option value="">-Please Choose-</option>
   <option value="1">phase 1</option>
   <option value="2">phase 2</option>
   <option value="3">phase 3</option>
   <option value="4">phase 4</option>
-</select></p>
-<p>Number of people<select name="number" id="number">
-  <option value=""></option>
-</select> </p>
-<p>Prefered Location<SELECT NAME="location" OnChange='setinstitution(this[selectedIndex].text)'>
-<option selected value="" ></option></SELECT></p>
-<p>Prefered Institution<SELECT NAME="institution"></SELECT></p>
-First Factor:<input type="text" name="firstfactor" value="25"> Second Factor:<input type="text" name="secondfactor" value="25">
-<br>
-Third Factor:<input type="text" name="thirdfactor" value="25"> Fourth Factor:<input type="text" name="fourthfactor" value="25">
+</select>
+</li>
+
+<li>
+<label>Number of people</label>
+<select name="number" id="number" class="field-select">
+<option value="">-Choose Phase First-</option>
+</select>
+</li>
+
+<li>
+<label>Prefered Location</label>
+<SELECT NAME="location" class="field-select" OnChange='setinstitution(this[selectedIndex].text)'>
+</SELECT>
+</li>
+
+<li>
+<label>Prefered Institution</label>
+<SELECT NAME="institution" class="field-select">
+<option value="">-Choose Phase First-</option>
+</SELECT>
+</li>
+
+<br><br>
+
+<label>First Factor</label>
+<input type="text" name="firstfactor" value="25" class="field-long"> 
+<label>Second Factor</label>
+<input type="text" name="secondfactor" value="25" class="field-long">
+<label>Third Factor</label>
+<input type="text" name="thirdfactor" value="25" class="field-long"> 
+<label>Fourth Factor</label>
+<input type="text" name="fourthfactor" value="25" class="field-long">
+
 <br><br>
 <input type="submit" value="Submit">
 
 </form>
+</div>
 </body>
 </html>

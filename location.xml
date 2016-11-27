@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <item>
- <location display_name="-Please choose-">
-  <insitution display_name="-Please choose-">None</insitution>
+ <location display_name="-Please Choose-">
+  <insitution display_name="-Choose Location First-">None</insitution>
  </location>
  <location display_name="ALL">
   <insitution display_name="INS1">INS1</insitution>
