@@ -97,7 +97,7 @@ function loadXML(){
   document.frm.institution.options.length = 0;
 
   for (i=0;i<xmlObj.childNodes.length;i++){
-    labels=xmlObj.childNodes(i).getAttribute("display_name");
+    labels=xmlObj.childNodes(i).getAttribute("name");
     values=xmlObj.childNodes(i).text;
     document.frm.location.add(document.createElement("OPTION"));
     document.frm.location.options[i].text=labels; 
@@ -129,14 +129,14 @@ function setinstitution(main){
     var values="";
     var lables="";
     if (is_selected=="Y") return;
-    labels=xmlObj.childNodes(i).getAttribute("display_name");
+    labels=xmlObj.childNodes(i).getAttribute("name");
     values=xmlObj.childNodes(i).text;
 
     if (labels==main){
       is_selected="Y";
       for (j=0;j<xmlObj.childNodes(i).childNodes.length;j++){
 
-      labels=xmlObj.childNodes(i).childNodes(j).getAttribute("display_name");
+      labels=xmlObj.childNodes(i).childNodes(j).getAttribute("name");
       values=xmlObj.childNodes(i).childNodes(j).text;
 
       document.frm.institution.add(document.createElement("OPTION"));
