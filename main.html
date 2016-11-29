@@ -192,6 +192,7 @@ with (thisform)
 <ul class="form-style-1">
 <div class="form">
 <legend>Clinical Trial Recommendation</legend>
+This app is for companies looking to conduct a Clinical Trial on Bronchogenic Carcinoma. It will provide you with the Top 5 recommended Institutions based on the requirements entered below: 
 <form NAME="frm" action="action_page.php" onsubmit="return validate_form(this)" method="post">
 
 
@@ -206,12 +207,12 @@ with (thisform)
 </select>
 </li>
 
-<li>
+<!-- <li>
 <label>Number of people</label>
 <select name="number" id="number" class="field-select">
 <option value="">-Choose Phase First-</option>
 </select>
-</li>
+</li> -->
 
 <li>
 <label>Prefered Location</label>
@@ -226,16 +227,18 @@ with (thisform)
 </SELECT>
 </li>
 
-<br><br>
+<br><label>Weight of Factors:</label>
 
-<label>First Factor</label>
-<input type="text" name="firstfactor" value="25" class="field-long"> 
-<label>Second Factor</label>
-<input type="text" name="secondfactor" value="25" class="field-long">
-<label>Third Factor</label>
-<input type="text" name="thirdfactor" value="25" class="field-long"> 
-<label>Fourth Factor</label>
-<input type="text" name="fourthfactor" value="25" class="field-long">
+<label>Total Number of Trials</label>
+<input type="text" name="w1" value="20" class="field-long"> 
+<label>Average Number of People Per Phase</label>
+<input type="text" name="w2" value="20" class="field-long">
+<label>Number of Trials Per Phase</label>
+<input type="text" name="w3" value="20" class="field-long"> 
+<label>Grants</label>
+<input type="text" name="w4" value="20" class="field-long">
+<label>Number of Publications</label>
+<input type="text" name="w5" value="20" class="field-long">
 
 <br><br>
 <input type="submit" value="Submit">
