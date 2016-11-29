@@ -80,75 +80,6 @@ function setNum(phase)
  
 </script>
 
-
-<!-- second select options -->
-<script language="JavaScript" for="window" event="onload">
-xmlDom = new ActiveXObject("Microsoft.XMLDOM");
-var i=0;
-var j=0;
-var institution_name="";
-loadXML();
-function loadXML(){
-  xmlDoc.async="false";
-  xmlDoc.load("location.xml");
-  xmlObj=xmlDoc.documentElement; 
-  nodes = xmlDoc.documentElement.childNodes;
-  document.frm.location.options.length = 0; 
-  document.frm.institution.options.length = 0;
-
-  for (i=0;i<xmlObj.childNodes.length;i++){
-    labels=xmlObj.childNodes(i).getAttribute("name");
-    values=xmlObj.childNodes(i).text;
-    document.frm.location.add(document.createElement("OPTION"));
-    document.frm.location.options[i].text=labels; 
-    document.frm.location.options[i].value=values; 
-  }
-}
-</script>
-
-<script language="JavaScript" >
-var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-var i=0;
-var j=0;
-
-function setinstitution(main){
-  var is_selected="N";
-  if (document.frm.institution.options.length!=0) { 
-    for (i=0;i<=document.frm.institution.options.length;i++)
-    document.frm.institution.options[i]=null ;
-  }
-
-  if (document.frm.institution.options.length!=0) { 
-    for (i=0;i<=document.frm.institution.options.length;i++){
-    document.frm.institution.options[i]=null ;
-    document.frm.institution.options.remove(i);
-    }
-  }
-
-  for (i=0;i<xmlObj.childNodes.length;i++){
-    var values="";
-    var lables="";
-    if (is_selected=="Y") return;
-    labels=xmlObj.childNodes(i).getAttribute("name");
-    values=xmlObj.childNodes(i).text;
-
-    if (labels==main){
-      is_selected="Y";
-      for (j=0;j<xmlObj.childNodes(i).childNodes.length;j++){
-
-      labels=xmlObj.childNodes(i).childNodes(j).getAttribute("name");
-      values=xmlObj.childNodes(i).childNodes(j).text;
-
-      document.frm.institution.add(document.createElement("OPTION"));
-      document.frm.institution.options[j].text=labels; 
-      document.frm.institution.options[j].value=values; 
-      }
-    }
-  }
-}
-</script>
-
-
 <!-- Validate Input -->
 <script type="text/javascript">
 
@@ -203,28 +134,61 @@ This app is for companies looking to conduct a Clinical Trial on Bronchogenic Ca
   <option value="1">phase 1</option>
   <option value="2">phase 2</option>
   <option value="3">phase 3</option>
-  <option value="4">phase 4</option>
 </select>
 </li>
-
-<!-- <li>
-<label>Number of people</label>
-<select name="number" id="number" class="field-select">
-<option value="">-Choose Phase First-</option>
-</select>
-</li> -->
 
 <li>
 <label>Prefered Location</label>
-<SELECT NAME="location" class="field-select" OnChange='setinstitution(this[selectedIndex].text)'>
-</SELECT>
-</li>
-
-<li>
-<label>Prefered Institution</label>
-<SELECT NAME="institution" class="field-select">
-<option value="">-Choose Phase First-</option>
-</SELECT>
+<select name="location" id="location" class="field-select">
+  <option value="">-Please Choose-</option>
+  <option value="Alabama">Alabama</option>
+  <option value="Alaska">Alaska</option>
+  <option value="Arizona">Arizona</option>
+  <option value="Arkansas">Arkansas</option>
+  <option value="California">California</option>
+  <option value="Colorado">Colorado</option>
+  <option value="Connecticut">Connecticut</option>
+  <option value="Delaware">Delaware</option>
+  <option value="Florida">Florida</option>
+  <option value="Georgia">Georgia</option>
+  <option value="Hawaii">Hawaii</option>
+  <option value="Idaho">Idaho</option>
+  <option value="Illinois Indiana">Illinois Indiana</option>
+  <option value="Iowa">Iowa</option>
+  <option value="Kansas">Kansas</option>
+  <option value="Kentucky">Kentucky</option>
+  <option value="Louisiana">Louisiana</option>
+  <option value="Maine">Maine</option>
+  <option value="Maryland">Maryland</option>
+  <option value="Massachusetts">Massachusetts</option>
+  <option value="Michigan">Michigan</option>
+  <option value="Minnesota">Minnesota</option>
+  <option value="Mississippi">Mississippi</option>
+  <option value="Missouri">Missouri</option>
+  <option value="Montana Nebraska">Montana Nebraska</option>
+  <option value="Nevada">Nevada</option>
+  <option value="New Hampshire">New Hampshire</option>
+  <option value="New Jersey">New Jersey</option>
+  <option value="New Mexico">New Mexico</option>
+  <option value="New York">New York</option>
+  <option value="North Carolina">North Carolina</option>
+  <option value="North Dakota">North Dakota</option>
+  <option value="Ohio">Ohio</option>
+  <option value="Oklahoma">Oklahoma</option>
+  <option value="Oregon">Oregon</option>
+  <option value="Pennsylvania Rhode Island">Pennsylvania Rhode Island</option>
+  <option value="South Carolina">South Carolina</option>
+  <option value="South Dakota">South Dakota</option>
+  <option value="Tennessee">Tennessee</option>
+  <option value="Texas">Texas</option>
+  <option value="Utah">Utah</option>
+  <option value="Vermont">Vermont</option>
+  <option value="Virginia">Virginia</option>
+  <option value="Washington">Washington</option>
+  <option value="West Virginia">West Virginia</option>
+  <option value="Wisconsin">Wisconsin</option>
+  <option value="Wyoming">Wyoming</option>
+</select>
 </li>
 
 <br><label>Weight of Factors:</label>
