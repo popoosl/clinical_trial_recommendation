@@ -1,0 +1,216 @@
+<!-- saved from url=(0014)about:internet -->
+<!-- myfile.html -->
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+<!-- first select options -->
+<script language="JavaScript" type="text/javascript">
+
+/*
+ * Clear dropdown list
+ * @param {String || Object]} selectObj: the name of the dropbox or object, required
+ */
+function removeOptions(selectObj)
+{
+  if (typeof selectObj != 'object')
+  {
+    selectObj = document.getElementById(selectObj);
+  }
+
+  var len = selectObj.options.length;
+ 
+  for (var i=0; i < len; i++)
+  {
+    selectObj.options[0] = null;
+  }
+}
+ 
+/*
+ * @param {String || Object]} selectObj: the name of the dropdown list or object, required
+ * @param {Array} optionList: set text:value  [{txt:'10,20', val:'10'}] required
+ * @param {String} firstOption: 'Please choose', optional
+ * @param {String} selected: default value, optional
+ */
+function setSelectOption(selectObj, optionList, firstOption, selected)
+{
+  if (typeof selectObj != 'object')
+  {
+    selectObj = document.getElementById(selectObj);
+  }
+ 
+  // clear dropdown list
+  removeOptions(selectObj);
+ 
+  var start = 0;
+  
+  if (firstOption)
+  {
+    selectObj.options[0] = new Option(firstOption, '');
+    start ++;
+  }
+ 
+  var len = optionList.length;
+ 
+  for (var i=0; i < len; i++)
+  {
+    //Set option
+    selectObj.options[start] = new Option(optionList[i].txt, optionList[i].val);
+    // selected item
+    if(selected == optionList[i].val)
+    {
+      selectObj.options[start].selected = true;
+    }
+    start ++;
+  }
+}
+</script>
+
+
+<script language="JavaScript" type="text/javascript">
+var numberOf = [];
+numberOf[1] = [{txt:'10--20', val:'10'}];
+numberOf[2] = [{txt:'30--40', val:'30'}];
+numberOf[3] = [{txt:'50--60', val:'50'}];
+numberOf[4] = [{txt:'70--80', val:'70'}];
+ 
+function setNum(phase)
+{ 
+  setSelectOption('number', numberOf[phase], '');
+}
+ 
+</script>
+
+<!-- Validate Input -->
+<script type="text/javascript">
+
+function validate_required(field,alerttxt)
+{
+with (field)
+  {
+  if (value==null||value=="")
+    {alert(alerttxt);return false}
+  else {return true}
+  }
+}
+
+// function validate_sumFactor()
+// {
+//   var a = parseFloat(document.getElementByName("firstfactor").value),
+//   var b = parseFloat(document.getElementByName("secondfactor").value),
+//   var c = parseFloat(document.getElementByName("thirdfactor").value),
+//   var d = parseFloat(document.getElementByName("fourthfactor").value,
+//   var result = (a+b+c+d);
+
+//   if (result != 100)
+//     {alert("hahha");return false}
+// }
+
+function validate_form(thisform)
+{
+with (thisform)
+  {
+  if (validate_required(phase,"Phase must be filled out!")==false)
+    {phase.focus();return false};
+  // if (validate_sumFactor()==false)
+  //   {firstfactor.focus();return false}
+  }
+}
+</script>
+
+<title>591: Final Project</title>
+</head>
+<body>
+<ul class="form-style-1">
+<div class="form">
+<legend>Clinical Trial Recommendation</legend>
+This app is for companies looking to conduct a Clinical Trial on Bronchogenic Carcinoma. It will provide you with the Top 5 recommended Institutions based on the requirements entered below: 
+<form NAME="frm" action="action" onsubmit="return validate_form(this)" method="post">
+
+
+<li>
+<label>Phase<span class="required">*</span></label>
+<select name="phase" id="phase" class="field-select" onchange="setNum(this.options[this.selectedIndex].value);">
+  <option value="">-Please Choose-</option>
+  <option value="1">phase 1</option>
+  <option value="2">phase 2</option>
+  <option value="3">phase 3</option>
+</select>
+</li>
+
+<li>
+<label>Prefered Location</label>
+<select name="location" id="location" class="field-select">
+  <option value="">-Please Choose-</option>
+  <option value="Alabama">Alabama</option>
+  <option value="Alaska">Alaska</option>
+  <option value="Arizona">Arizona</option>
+  <option value="Arkansas">Arkansas</option>
+  <option value="California">California</option>
+  <option value="Colorado">Colorado</option>
+  <option value="Connecticut">Connecticut</option>
+  <option value="Delaware">Delaware</option>
+  <option value="Florida">Florida</option>
+  <option value="Georgia">Georgia</option>
+  <option value="Hawaii">Hawaii</option>
+  <option value="Idaho">Idaho</option>
+  <option value="Illinois">Illinois</option>
+  <option value="Indiana">Indiana</option>
+  <option value="Iowa">Iowa</option>
+  <option value="Kansas">Kansas</option>
+  <option value="Kentucky">Kentucky</option>
+  <option value="Louisiana">Louisiana</option>
+  <option value="Maine">Maine</option>
+  <option value="Maryland">Maryland</option>
+  <option value="Massachusetts">Massachusetts</option>
+  <option value="Michigan">Michigan</option>
+  <option value="Minnesota">Minnesota</option>
+  <option value="Mississippi">Mississippi</option>
+  <option value="Missouri">Missouri</option>
+  <option value="Montana">Montana</option>
+  <option value="Nebraska">Nebraska</option>
+  <option value="Nevada">Nevada</option>
+  <option value="New Hampshire">New Hampshire</option>
+  <option value="New Jersey">New Jersey</option>
+  <option value="New Mexico">New Mexico</option>
+  <option value="New York">New York</option>
+  <option value="North Carolina">North Carolina</option>
+  <option value="North Dakota">North Dakota</option>
+  <option value="Ohio">Ohio</option>
+  <option value="Oklahoma">Oklahoma</option>
+  <option value="Oregon">Oregon</option>
+  <option value="Pennsylvania">Pennsylvania</option>
+  <option value="Rhode Island">Rhode Island</option>
+  <option value="South Carolina">South Carolina</option>
+  <option value="South Dakota">South Dakota</option>
+  <option value="Tennessee">Tennessee</option>
+  <option value="Texas">Texas</option>
+  <option value="Utah">Utah</option>
+  <option value="Vermont">Vermont</option>
+  <option value="Virginia">Virginia</option>
+  <option value="Washington">Washington</option>
+  <option value="West Virginia">West Virginia</option>
+  <option value="Wisconsin">Wisconsin</option>
+  <option value="Wyoming">Wyoming</option>
+</select>
+</li>
+
+<br><label>Weight of Factors:</label>
+
+<label>Total Number of Trials</label>
+<input type="text" name="w1" value="20" class="field-long"> 
+<label>Average Number of People Per Phase</label>
+<input type="text" name="w2" value="20" class="field-long">
+<label>Number of Trials Per Phase</label>
+<input type="text" name="w3" value="20" class="field-long"> 
+<label>Grants</label>
+<input type="text" name="w4" value="20" class="field-long">
+<label>Number of Publications</label>
+<input type="text" name="w5" value="20" class="field-long">
+
+<br><br>
+<input type="submit" value="Submit">
+
+</form>
+</div>
+</body>
+</html>
